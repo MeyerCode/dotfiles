@@ -1,7 +1,7 @@
 # Font configuration
 font:
   # Point size
-  size: 8.0
+  size: 14.0
   # Normal (roman) font face
   normal:
     # Font family
@@ -10,7 +10,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Hack Nerd Font Mono
+    family: Hack
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -49,6 +49,42 @@ font:
     style: Bold Italic
 
 #draw_bold_text_with_bright_colors: false
+
+key_bindings:
+  - { key: Key1,      mods: Alt,          chars: "©"                     }
+  - { key: Key2,      mods: Alt,          chars: "@"                     }
+  - { key: Key3,      mods: Alt,          chars: "£"                     }
+  - { key: Key4,      mods: Alt,          chars: "$"                     }
+  - { key: Key5,      mods: Alt,          chars: "∞"                     }
+  - { key: Key6,      mods: Alt,          chars: "\xA7"                  }
+  - { key: Key7,      mods: Alt,          chars: "|"                     }
+  - { key: Key8,      mods: Alt,          chars: "\x5B"                  }
+  - { key: Key9,      mods: Alt,          chars: "\x5D"                  }
+  - { key: Key0,      mods: Alt,          chars: "≈"                     }
+  - { key: Minus,     mods: Alt,          chars: "\xB1"                  }
+
+## sv_SE PC Layout ('{', '}', '\' and '|' characters):
+#  - { key: Key7,      mods: Alt,          chars: "\x7B"                  }
+#  - { key: Key0,      mods: Alt,          chars: "\x7D"                  }
+#  - { key: Minus,     mods: Alt,          chars: "\x5C"                  }
+#  - { key: Grave,     mods: Alt,          chars: "\x7C"                  }
+  
+  - { key: Key1,      mods: Alt|Shift,    chars: "\xA1"                  }
+  - { key: Key2,      mods: Alt|Shift,    chars: "”"                     }
+  - { key: Key3,      mods: Alt|Shift,    chars: "\xA5"                  }
+  - { key: Key4,      mods: Alt|Shift,    chars: "\x24"                  }
+  - { key: Key5,      mods: Alt|Shift,    chars: "‰"                     }
+  - { key: Key6,      mods: Alt|Shift,    chars: "\xB6"                  }
+  - { key: Key7,      mods: Alt|Shift,    chars: "\x5C"                  }
+  - { key: Key8,      mods: Alt|Shift,    chars: "{"                     }
+  - { key: Key9,      mods: Alt|Shift,    chars: "}"                     }
+  - { key: Key0,      mods: Alt|Shift,    chars: "≠"                     }
+  - { key: Minus,     mods: Alt|Shift,    chars: "\xBF"                  }
+
+# Replace the default bindings for these as the VirtualKeycodes don't match reality
+  - { key: Slash,     mods: Command,      action: DecreaseFontSize       }
+  - { key: Minus,     mods: Command,      action: IncreaseFontSize       }
+alt_send_esc: false
 
 schemes:
   one_dark: &dark
@@ -111,6 +147,70 @@ schemes:
       cyan:    '#56b6c2'
       white:   '#ffffff'
 
+  dracula: &dracula_theme
+    primary:
+      background: '0x282a36'
+      foreground: '0xf8f8f2'
+
+    cursor:
+      text: CellBackground
+      cursor: CellForeground
+      
+    vi_mode_cursor:
+      text: CellBackground
+      cursor: CellForeground
+
+    search:
+      matches:
+        foreground: '0x44475a'
+        background: '0x50fa7b'
+      focused_match:
+        foreground: '0x44475a'
+        background: '0xffb86c'
+      bar:
+        background: '0x282a36'
+        foreground: '0xf8f8f2'
+
+    line_indicator:
+      foreground: None
+      background: None
+
+    selection:
+      text: CellForeground
+      background: '0x44475a'
+
+    normal:
+      black:   '0x000000'
+      red:     '0xff5555'
+      green:   '0x50fa7b'
+      yellow:  '0xf1fa8c'
+      blue:    '0xbd93f9'
+      magenta: '0xff79c6'
+      cyan:    '0x8be9fd'
+      white:   '0xbfbfbf'
+
+    bright:
+      black:   '0x4d4d4d'
+      red:     '0xff6e67'
+      green:   '0x5af78e'
+      yellow:  '0xf4f99d'
+      blue:    '0xcaa9fa'
+      magenta: '0xff92d0'
+      cyan:    '0x9aedfe'
+      white:   '0xe6e6e6'
+
+    dim:
+      black:   '0x14151b'
+      red:     '0xff2222'
+      green:   '0x1ef956'
+      yellow:  '0xebf85b'
+      blue:    '0x4d5b86'
+      magenta: '0xff46b0'
+      cyan:    '0x59dffc'
+      white:   '0xe6e6d1'
+
 # Colors (One Dark)
-colors: *dark
+#colors: *dark
 #colors: *light
+colors: *dracula_theme
+
