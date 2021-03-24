@@ -1,0 +1,17 @@
+[user]
+  #email = adam.meyer@trustly.com
+  email = adam@meyerfam.com
+  #name = ameyertrustly
+  name = MeyerCode
+[alias]
+	co = checkout
+	st = status
+	pl = pull
+  cl = clone
+	mg = merge
+	f = fetch
+  pu = push
+  br = branch
+  cm = commit
+  lg = log --oneline
+
