@@ -72,12 +72,17 @@ fi
 
 # Variables
 export EDITOR=nvim
-# NeoVim
-alias vim='nvim'
-alias v='nvim'
 
 # Source aliases
 [[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
 
-#Arch default
-#PS1='[\u@\h \W]\$ '
+# z - Jump Around
+. ~/src/github.com/z/z.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source "$HOME/.cargo/env"
+
