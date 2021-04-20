@@ -1,10 +1,11 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
+
 source ~/.vimrc
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'ayu-theme/ayu-vim' 
 Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
@@ -22,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -41,6 +43,7 @@ set termguicolors
 "colorscheme one
 "colorscheme challenger_deep
 
+let g:dracula_colorterm = 0
 colorscheme dracula
 
 command! BgToggle :let &background = ( &background == "dark" ? "light" : "dark" )
@@ -59,16 +62,8 @@ let mapleader="\<SPACE>"
 
 set updatetime=50
 
-" ////////////////
-" vimwiki settings
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
-" command VimwikiConvertMarkdown :! find ~/vimwiki/ -name "*.wiki" | while read i; do pandoc -f markdown -t html "$i" -o "${i\%.*}.html" -c ~/vimwiki/style/pandoc.css; done
-
-nnoremap <Leader>ö :VimwikiConvertMarkdown<CR>
-" \\\\\\\\\\\\\\\\
-
 " ////////
-" My own wiki!
+" Wiki
 nnoremap <Leader>wi :! git add . && git cm -m "Update" && git pu<CR>
 " \\\\\\\\
 
@@ -100,6 +95,21 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <C-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <C-space> coc#refresh()
+else
+  inoremap <silent><expr> <C-@> coc#refresh()
+endif
+
+" Auto-import
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 " \\\\\\\\\\\\\\\\
 
 " ////////////////

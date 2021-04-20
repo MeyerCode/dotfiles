@@ -12,6 +12,8 @@ alias B='echo 🅱️ ommand not found'
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
+alias vimc='vim ~/.vimrc'
+alias nvimc='vim ~/.config/nvim/init.vim'
 alias ös='ls -Al'
 
 # Path navigation 
