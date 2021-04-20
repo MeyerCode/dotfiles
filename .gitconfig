@@ -3,6 +3,9 @@
   email = adam@meyerfam.com
   #name = ameyertrustly
   name = MeyerCode
+  #signingkey = D570899A
+[commit]
+  #gpgsign = true
 [alias]
 	co = checkout
 	st = status
