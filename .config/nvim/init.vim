@@ -21,11 +21,15 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'vimwiki/vimwiki'
 
+Plug 'sheerun/vim-polyglot'
+
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'lervag/vimtex'
 
@@ -110,6 +114,19 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+" 'Go To' code navigation.
+nmap <leader>df <Plug>(coc-definition)
+nmap <leader>dc <Plug>(coc-declaration)
+nmap <leader>y <Plug>(coc-type-definition)
+nmap <leader>i <Plug>(coc-implementation)
+nmap <leader>rf <Plug>(coc-references)
+
+" Refactoring
+nmap <leader>r <Plug>(coc-refactor)
+
+" Function signature helper
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 " \\\\\\\\\\\\\\\\
 
 " ////////////////
@@ -140,9 +157,22 @@ let g:NERDTreeWinSize=20
 " vim-gitgutter
 nnoremap <Leader>g :GitGutterToggle<CR>
 " \\\\\\\\\\\\\\\\
-"
+
 " ////////////////
 " FZF
 nnoremap <Leader>f :FZF<CR>
 nnoremap <Leader>F :Rg<CR>
 " \\\\\\\\\\\\\\\\
+
+" ////////////////
+" FZF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
+" \\\\\\\\\\\\\\\\
+

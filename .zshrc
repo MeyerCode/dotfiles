@@ -1,3 +1,5 @@
+#zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -86,8 +88,21 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+EDITOR=nvim
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+## Perform compinit once a day
+setopt EXTENDEDGLOB
+for dump in $HOME/.zcompdump(#qN.m1); do
+  compinit
+  if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+    zcompile "$dump"
+  fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -98,9 +113,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.bash_aliases
-
-dwight
-
 
 bindkey -v
 bindkey -M vicmd v edit-command-line
@@ -113,19 +125,18 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-EDITOR=nvim
-
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
-
 # FZF settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export FZF_DEFAULT_OPTS='--preview "bat --style=numbers --color=always --line-range :500 {}" --height 80% --layout=reverse --border'
-
 export BAT_THEME='Dracula'
+
+export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+PATH=~/.nvm/versions/node/v14.17.0/bin:$PATH
+
 
 eval "$(pyenv init -)"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+dwight
+#zprof
 
